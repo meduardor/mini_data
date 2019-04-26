@@ -14,7 +14,19 @@ def documentJson(filename):
         open(arquivo)
 
 
-def writerData(arquivo, *filename, nameKeys):
+def writerKeys(arquivo, *filename, nameKeys):
+    arquivo = documentJson(filename)
     keys = open(arquivo, "w+")
     keys.write(nameKeys)
     keys.close()
+
+
+def writerValues(arquivo, *filename, nameValues):
+    arquivo = documentJson(filename)
+    values = open(arquivo, "w+")
+    values.write(nameValues)
+    values.close()
+
+dataDict = {}
+for writerKeys, writerValues in dataDict:
+    pass
