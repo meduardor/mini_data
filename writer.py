@@ -5,28 +5,48 @@ import os
 
 
 def documentJson(filename):
-    caminho = '~/.dataset'
+    caminho = '~/.dataset/'
     # TODO: concatenar e criar o arquivo junto com a ext ".json"
     arquivo = caminho + filename
     if not os.path.exists(caminho):
-        os.makedirs(caminho)
+        os.mkdir(caminho)
     if not os.path.exists(arquivo):
         open(arquivo)
 
 
-def writerKeys(arquivo, *filename, nameKeys):
+def writerData(nameKeys, nameValues):
+    dictData = {}
     arquivo = documentJson(filename)
-    keys = open(arquivo, "w+")
-    keys.write(nameKeys)
-    keys.close()
+    keysValues = open(arquivo, "w+")
+    for keysValues in dictData:
+        dictData["nameKeys"] = nameValues
+        keysValues.write(dictData)
+        keysValues.close()
 
 
-def writerValues(arquivo, *filename, nameValues):
-    arquivo = documentJson(filename)
-    values = open(arquivo, "w+")
-    values.write(nameValues)
-    values.close()
+# TODO: Escrever um looping para determinar a quantidade valores de  entra.
 
-dataDict = {}
-for writerKeys, writerValues in dataDict:
-    pass
+
+def readData(dictData, nameKeys, nameValues):
+    if dictData = {nameKeys: namevalues}:
+        readDataKeys = writerData(nameKeys)
+        readDataKeys.readlines()
+        return readDataKeys
+    elif:
+        readDataValues = writerData(nameValues)
+        readDataValues.readlines()
+        return readDataValues
+    else:
+        pass
+        
+        # TODO: Escrever o modulo read || de forma imperativa escrever todas
+        # as funções no module writer.
+        
+        
+    
+    
+    
+    
+    
+    
+    
