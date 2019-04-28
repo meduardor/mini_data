@@ -28,25 +28,16 @@ def writerData(nameKeys, nameValues):
 
 
 def readData(dictData, nameKeys, nameValues):
-    if dictData = {nameKeys: namevalues}:
+    if dictData == {nameKeys}:
         readDataKeys = writerData(nameKeys)
         readDataKeys.readlines()
         return readDataKeys
-    elif:
+    elif dictData == {nameValues}:
         readDataValues = writerData(nameValues)
         readDataValues.readlines()
         return readDataValues
     else:
-        pass
+        print("ERROR")
         
         # TODO: Escrever o modulo read || de forma imperativa escrever todas
         # as funções no module writer.
-        
-        
-    
-    
-    
-    
-    
-    
-    
