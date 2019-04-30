@@ -1,8 +1,0 @@
-* TODO:
-
-** TODO Create function writer file in module writer
-** TODO Concat filename in extesions (.json; .csv)
-** TODO Create function read
-** TODO Escrever um looping para determinar a quantidade valores de  entra.
-** TODO Melhor as funções
-** TODO Escrever o modulo read || de forma imperativa escrever todas
