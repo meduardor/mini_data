@@ -6,40 +6,60 @@ import sys
 import json
 
 
+
+
+
 def documentJson(filename):
     caminho = '.dataset/'
     arquivo = caminho + (filename + ".json")
     if not os.path.exists(caminho):
         os.makedirs(caminho)
     if not os.path.exists(arquivo):
-        open(arquivo, "w+")
+        open(arquivo)
 
 
 def documentCsv(filename):
     caminho = '.dataset/'
     arquivo = caminho + (filename + ".csv")
     if not os.path.exists(caminho):
+       os.makedirs(caminho)
+    if not os.path.exists(arquivo):
+        open(arquivo)
+
+
+def writerDatajson(filename, count):
+    lista_dados = []
+# Dados que serão trasmitidos para o arquivo
+    key = input("Digite uma Chave: ")
+    lista_dados.append(key)
+    value = input("Digite um Valor: ")
+    lista_dados.append(value)
+# Criação do Arquivo que vai receber os dados
+    caminho = '.dataset/'
+    arquivo = caminho + (filename + ".json")
+    if not os.path.exists(caminho):
         os.makedirs(caminho)
     if not os.path.exists(arquivo):
-        open(arquivo, "w+")
+        open(arquivo, 'w')
 
-
-def writerDatajson(nameKeys, nameValues, filename):
-    # TODO: Função para criar a Dict que vai ser escrito no arquivo ".Json"
-    # dictData = {'nameKeys': 'nameValues'}
-    arquivo = documentJson(filename)
-    with open(arquivo, "w+") as abrir:
-            conteudo = abrir.readlines()
-            try:
-                for dictData in json.JSONEncoder().iterencode({"nameKeys": "nameValues"}):
-                    conteudo.append(str(dictData))
-                    abrir = open(arquivo, "w")
-                    abrir.writelines(conteudo)
-            except ValueError:
-               print('ERROR: Objeto não interou no Dict')
-            else:
-                abrir.close()
-                return arquivo
+    for key, value in range(count):
+        lista_dados.append(key)
+        lista_dados.append(value)
+# TODO: Criar uma lista unica, fazer um split para converter em um dict
+    lista_key = [lista_dados[0]]
+    lista_value = [lista_dados[1]]
+    lista_salvar = [dict(zip(lista_key, lista_value))]
+    dictData = {"Dados":lista_salvar}
+    dictData = json.dumps(dictData, indent=4, sort_keys=False)
+    try:
+        abrir = open(arquivo, 'r+')
+        conteudo = abrir.readlines()
+        conteudo.append(dictData)
+        abrir = open(arquivo, 'w')
+        abrir.writelines(conteudo)
+        abrir.close()
+    except Exception as Error:
+        print("Não foi possivel iterar os dados {}".format(dictData))
 
 
 def writerDataCsv():
