@@ -4,20 +4,29 @@
 import writer
 import read
 
-nameEx = input('Qual extensão json/csv: ').upper()
-dataName = input('Nome do Banco: ').upper()
-dataKeys = input('Nome da Chave: ')
-dataValues = input('Nome dos Valores: ')
+nameEx = input('Qual extensão? json/csv.\n > ').upper()
+dataName = input('Nome do Banco\n > ').upper()
+count = int(input('Quantidade de dados.\n > '))
 
 
 if __name__ == '__main__':
+    stopdata = 0
+    while True:
+        if stopdata <= count:
+            stopdata += 1
+            if nameEx == "JSON":
+                bancoProduct = writer.writerDatajson(dataName, count)
+            elif nameEx == "CVS":
+                pass
+        elif stopdata >= count:
+            break
 
-    if nameEx == "JSON":
-        bancoData = writer.documentJson(dataName)
-        bancoProduct = writer.writerDatajson(dataKeys, dataValues, dataName)
-        readname = read.ReadDataJson(bancoData)
-    elif nameEx == "CSV":
-        pass
-        # res = bancoProduct.table.rowsKeys()
-    print(bancoData, bancoProduct)
-    # print(res)
+       #if stopdata <= count:
+       #    if nameEx == "JSON":
+       #         bancoProduct = writer.writerDatajson(dataName)
+       #    elif nameEx == "CSV":
+       #         pass
+       #elif stopdata == count:
+       #    stopdata = 0
+       #    print('Deseja Criar outro banco')
+       #    stopdata += 1
