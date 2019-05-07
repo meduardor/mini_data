@@ -2,7 +2,7 @@
 
 
 import writer
-import read
+# import read
 
 nameEx = input('Qual extensão? json/csv.\n > ').upper()
 dataName = input('Nome do Banco\n > ').upper()
@@ -20,13 +20,3 @@ if __name__ == '__main__':
                 pass
         elif stopdata >= count:
             break
-
-       #if stopdata <= count:
-       #    if nameEx == "JSON":
-       #         bancoProduct = writer.writerDatajson(dataName)
-       #    elif nameEx == "CSV":
-       #         pass
-       #elif stopdata == count:
-       #    stopdata = 0
-       #    print('Deseja Criar outro banco')
-       #    stopdata += 1
