@@ -15,8 +15,8 @@ if __name__ == '__main__':
         if stopdata <= count:
             stopdata += 1
             if nameEx == "JSON":
-                bancoProduct = writer.writerDatajson(dataName, count)
-            elif nameEx == "CVS":
-                pass
+                bancoProduct = writer.writerDatajson(dataName)
+            elif nameEx == "CSV":
+                bancoCsv = writer.writerDataCsv(dataName)
         elif stopdata >= count:
             break
