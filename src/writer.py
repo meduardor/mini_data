@@ -16,6 +16,8 @@ def documentCsv(filename):
 
 
 def writerDatajson(filename):
+    ''' Escreve arquivo json e add dados no arquivo'''
+
     lista_key = []
     lista_value = []
     count = int(input('Digite o numero de Dados: '))
@@ -37,7 +39,7 @@ def writerDatajson(filename):
         open(arquivo, 'w')
 
     # Conversão das listas em dict, para a escrita no documento ".json"
-
+# TODO: Refatorar essa parte do codigo
     lista_salvar = [dict(zip(lista_key, lista_value))]
     dictData = {"Dados": lista_salvar}
     dictData = json.dumps(dictData, indent=4, sort_keys=False)
@@ -54,35 +56,42 @@ def writerDatajson(filename):
 
 
 def writerDataCsv(filename):
+    '''Escrever documentos csv e insere dados no documento'''
+
     count = int(input('Digite numero de campos: '))
     fieldnames = []
     fieldcampos = []
 
     for i in range(count):
         fieldnames.append(input('Digite o Nome do campos: '))
+        Campos = dict(zip(fieldnames, ' '))
+
     for x in range(count):
         fieldcampos.append(input('Digite os Campos: '))
 
-    lista_salvar = dict(zip(fieldnames, ' '))
     # TODO: Mudar a forma de atrelar os valores no dict
     # para enviar para o documento
-    lista_salvar1 = dict(zip(' ', fieldcampos))
-# Criação dos arquivos csv
+
+    # Criação dos arquivos csv
     caminho = '.dataset/csv/'
     arquivo = caminho + (filename + ".csv")
     if not os.path.exists(caminho):
         os.makedirs(caminho)
     if not os.path.exists(arquivo):
         open(arquivo, 'w')
-# TODO: Escrever a primeira fileira de descrição das informações
-# TODO: Depois append dos dados nas informações
+        # TODO: Escrever a primeira fileira de descrição das informações
+        # TODO: Depois append dos dados nas informações
 
     with open(arquivo, 'w+', newline='') as csv_file:
-        writer = csv.DictWriter(csv_file, fieldnames=fieldnames)
-        writer.writeheader()
-        writer.writerow(lista_salvar)
-        with open(arquivo, 'a', newline='') as csv_file:
-            writer = csv.DictWriter(csv_file,
-                                    fieldnames=fieldnames,
+        if fieldnames in csv_file:
+            pass
+        else:
+            writer = csv.DictWriter(csv_file, fieldnames=fieldnames,
                                     delimiter='\t')
-            writer.writerow(lista_salvar1)
+            writer.writeheader()
+            writer.writerow(Campos)
+
+    with open(arquivo, 'a+') as csv_file:
+        writer = csv.writer(csv_file)
+        for x in range(count):
+            writer.writerow(fieldcampos)
