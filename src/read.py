@@ -34,6 +34,5 @@ def ReadDataJson(filename):
         pass
 
 
-
 def ReadDataCsv(filename):
     pass

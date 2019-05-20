@@ -88,15 +88,25 @@ def writerDataCsv(filename):
                                     delimiter='\t')
             writer.writeheader()
             writer.writerow(Campos)
+<<<<<<< HEAD
             csv_file.close()
 #    complete = True
     while True:
         for x in range(count):
             fieldcampos.append(input('Digite os Campos: '))
+=======
+        csv_file.close()
+    complete = True
+    while True:
+>>>>>>> 61ec2568434b2842a7ea9f47db0dfe0530cea09a
         with open(arquivo, 'a+') as csv_file:
             writer = csv.writer(csv_file)
             for x in range(count):
                 writer.writerow(fieldcampos)
+<<<<<<< HEAD
         if csv_file.close():
             # complete = False
             break
+=======
+# TODO: Escrever dois loops para iterar os dados no documento
+>>>>>>> 61ec2568434b2842a7ea9f47db0dfe0530cea09a
