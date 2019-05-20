@@ -90,8 +90,11 @@ def writerDataCsv(filename):
                                     delimiter='\t')
             writer.writeheader()
             writer.writerow(Campos)
-
-    with open(arquivo, 'a+') as csv_file:
-        writer = csv.writer(csv_file)
-        for x in range(count):
-            writer.writerow(fieldcampos)
+        csv_file.close()
+    complete = True
+    while True:
+        with open(arquivo, 'a+') as csv_file:
+            writer = csv.writer(csv_file)
+            for x in range(count):
+                writer.writerow(fieldcampos)
+# TODO: Escrever dois loops para iterar os dados no documento
