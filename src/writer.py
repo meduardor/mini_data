@@ -89,7 +89,7 @@ def writerDataCsv(filename):
             writer.writeheader()
             writer.writerow(Campos)
         csv_file.close()
-        complete = True
+        # complete = True
         while True:
             with open(arquivo, 'a+') as csv_file:
                 writer = csv.writer(csv_file)
