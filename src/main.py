@@ -9,6 +9,29 @@ dataName = input('Nome do Banco\n > ').upper()
 count = int(input('Quantidade de dados.\n > '))
 
 # TODO: Definir funções de saida para cada tarefa
+def escrever():
+    if nameEX == "JSON":
+        escrita = writer.writerDatajson(dataName)
+
+        return escrita
+    elif nameEx == "CSV":
+        escrita = writer.writerDataCsv(dataName)
+
+        return escrita
+
+
+def ver():
+    pass
+
+def backup():
+    pass
+
+def connection():
+    pass
+
+def users():
+    pass
+
 
 if __name__ == '__main__':
     stopdata = 0
