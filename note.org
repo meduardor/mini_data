@@ -1,0 +1,40 @@
+* NOTEBOOK PROJETO MINI-DATA
+
+** Notas modulo Writer
+*** Função Escrever arquivo csv
+    - Alocar os dados de campos com append seguindo os fieldnames (Titulos dos Programas)
+    - Criar Variaveis com argumentos direito no CLI "usar click lib"
+    - exemplos dos erros:
+
+#+begin_src python
+with open('arquivo', 'w+', newline='') as f:
+for lines in f:
+lines.writerows() #contem um erro
+#+end_src
+    - Achar uma forma de iterar os valores dos campos para ser adicionados em sequencia
+no arquivo.
+    - Evitar repetição do Header, que está sendo pedida repedidas vezes.
+
+*** Função Escrever arquivo Json
+    - Reformular as entradas de dados no arquivo Json, para entrar só uma lista com os Dados
+    - Dados Obter todos os dict registrados.
+      - Dados que tem que ter uma reformulação:
+      - Refatoração do Codigo (TODO-LIST)
+#+BEGIN_SRC python
+    lista_salvar = [dict(zip(lista_key, lista_value))]
+    dictData = {"Dados": lista_salvar}
+    dictData = json.dumps(dictData, indent=4, sort_keys=False)
+    try:
+        abrir = open(arquivo, 'r+')
+        conteudo = abrir.readlines()
+        conteudo.append(dictData)
+        abrir = open(arquivo, 'w')
+        abrir.writelines(conteudo)
+        abrir.close()
+    except Exception as Error:
+        print("Não foi possivel iterar os dados {}, {}".format(dictData,
+                                                               Error))
+
+#+END_SRC
+** Notas Modulo Read
+*** Função ler arquivo Json
