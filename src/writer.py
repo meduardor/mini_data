@@ -39,9 +39,9 @@ def writerDatajson(filename):
         open(arquivo, 'w')
 
     # Conversão das listas em dict, para a escrita no documento ".json"
-# TODO: Refatorar essa parte do codigo
+    # TODO: Refatorar essa parte do codigo
     lista_salvar = [dict(zip(lista_key, lista_value))]
-    dictData = {"Dados": lista_salvar}
+    dictData = {"Dados": lista_salvar}   # TODO: Criar uma entrada unica de acesso na lista dados;
     dictData = json.dumps(dictData, indent=4, sort_keys=False)
     try:
         abrir = open(arquivo, 'r+')
@@ -66,8 +66,6 @@ def writerDataCsv(filename):
         fieldnames.append(input('Digite o Nome do campos: '))
         Campos = dict(zip(fieldnames, ' '))
 
-    for x in range(count):
-        fieldcampos.append(input('Digite os Campos: '))
 
     # TODO: Mudar a forma de atrelar os valores no dict
     # para enviar para o documento
@@ -90,8 +88,15 @@ def writerDataCsv(filename):
                                     delimiter='\t')
             writer.writeheader()
             writer.writerow(Campos)
-
-    with open(arquivo, 'a+') as csv_file:
-        writer = csv.writer(csv_file)
+            csv_file.close()
+#    complete = True
+    while True:
         for x in range(count):
-            writer.writerow(fieldcampos)
+            fieldcampos.append(input('Digite os Campos: '))
+        with open(arquivo, 'a+') as csv_file:
+            writer = csv.writer(csv_file)
+            for x in range(count):
+                writer.writerow(fieldcampos)
+        if csv_file.close():
+            # complete = False
+            break
