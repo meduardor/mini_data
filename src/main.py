@@ -10,6 +10,11 @@ count = int(input('Quantidade de dados.\n > '))
 
 # TODO: Definir funções de saida para cada tarefa
 
+
+def escrever():
+    pass
+
+
 if __name__ == '__main__':
     stopdata = 0
     while True:
