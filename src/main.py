@@ -9,32 +9,36 @@ dataName = input('Nome do Banco\n > ').upper()
 count = int(input('Quantidade de dados.\n > '))
 
 # TODO: Definir funções de saida para cada tarefa
-def escrever():
-    if nameEX == "JSON":
-        escrita = writer.writerDatajson(dataName)
+
+
+def escrever(name, data):
+    # TODO: Refatorar essa função de acordo com as novas funcionalidades do
+    # Modulo writer.
+    if name == "JSON":
+        escrita = writer.writerDatajson(data)
 
         return escrita
-    elif nameEx == "CSV":
-        escrita = writer.writerDataCsv(dataName)
+    elif name == "CSV":
+        escrita = writer.writerDataCsv(data)
 
         return escrita
 
 
-def ver():
-    pass
+def ver(data, name):
+    if name == "JSON":
+        ler = read.ReadDataJson(data)
+        return ler
+
 
 def backup():
     pass
 
+
 def connection():
     pass
 
+
 def users():
-    pass
-
-
-
-def escrever():
     pass
 
 
@@ -42,17 +46,8 @@ if __name__ == '__main__':
     stopdata = 0
     while True:
         if stopdata <= count:
-
             stopdata += 1
-            if nameEx == "JSON":
-
-                bancoProduct = writer.writerDatajson(dataName)
-                results = read.ReadDataJson(dataName)
-                print('Docmunet \n {}'.format(results))
-
-            elif nameEx == "CSV":
-
-                bancoCsv = writer.writerDataCsv(dataName)
+            escrever(nameEx, dataName)
 
         elif stopdata >= count:
             break
