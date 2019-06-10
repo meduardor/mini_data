@@ -5,7 +5,7 @@
 
 import os
 import json
-# import csv
+import csv
 
 
 class WriterJson():
@@ -69,10 +69,22 @@ class WriterCsv():
         if not os.path.exists(__arquivo):
             open(__arquivo, 'w')
 
-    def DataCsv(**data):
-        pass
+    def DataCsv(self, **data):
+        self.fieldnames = []
+        self.fieldcampos = []
+        for i in self.fieldnames:
+            self.fieldnames.append(data)
 
-    def WriterDataCsv():
-        pass
+        for x in self.fieldcampos:
+            self.fieldcampos.append(data)
+
+    def WriterDataCsv(self, **data):
+        arquivo = WriterCsv.DocCsv(self.filename)
+        with open(arquivo, 'w+', newlines='') as csvfile:
+            datawriter = csv.writer(csvfile, delimiter=' ',
+                                    quotechar='|',
+                                    quoting=csv.QUOTE_MINIMAL)
+            datawriter.writerow(data)
+
     # TODO: pensar a forma de passar os **args
     # TODO: E de escrever eles no Documento
