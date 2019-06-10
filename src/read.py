@@ -18,19 +18,19 @@ class ReadJson():
         '''Leitura de dados de arquivos json'''
 
         # Verificação da existencia do arquivo
-        caminho = '.dataset/'
-        arquivo = caminho + (self.filename + '.json')
-        if not os.path.exists(caminho):
+        __caminho = '.dataset/'
+        __arquivo = __caminho + (self.filename + '.json')
+        if not os.path.exists(__caminho):
             print('Esse caminho não existe')
         else:
             pass
-        if not os.path.exists(arquivo):
+        if not os.path.exists(__arquivo):
             print('Esse arquivo não existe')
         else:
             pass
         # Conversão e leitura do Arquivo ".JSON"
         try:
-            fileJson = json.loads(arquivo,
+            fileJson = json.loads(__arquivo,
                                   encoding='UTF-8')
             with open(fileJson, 'r') as f_json:
                 f_json.readlines()
@@ -45,8 +45,27 @@ class ReadJson():
 
 
 class ReadCsv():
-    def __init__(self, filename):
+    def __init__(self, filename, **data):
         self.filename = filename
 
-    def ReadDataCsv(filename):
-        pass
+    def DataCsv(self):
+        __caminho = '.dataset/csv/'
+        __arquivo = __caminho + (self.filename + '.csv')
+        if not os.path.exists(__caminho):
+            print("Esse caminho não existe")
+        else:
+            pass
+        if not os.path.exists(__arquivo):
+            print("Esse arquivo não existe")
+        else:
+            pass
+
+        try:
+            __arquivo_csv = ReadCsv.DataCsv(self.filename)
+            with open(__arquivo_csv, newline='') as csvfile:
+                __reader = csv.DicReader(csvfile)
+                for row in __reader:
+                    print(row[data], row[data])
+       except Exception Error:
+           print("Erro de Leitura")
+
