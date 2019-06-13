@@ -3,12 +3,13 @@
 
 import os
 import json
-
+import csv
 
 # TODO: Escerver todos os dados e imprimir na tela
 # TODO: Filtrar os dados e imprimir
-# NOTE:  Todo o dict vai ter uma chave chamada  "Dados",
-# Seguido de uma lista.
+# NOTE: Todo o dict vai ter uma chave chamada  "Dados",
+# TODO: Criar argumentos para interagir com os dados na visualização
+
 
 class ReadJson():
     def __init__(self, filename):
@@ -39,16 +40,18 @@ class ReadJson():
         except TypeError:
             print("Seu arquivo não existe")
 
-    def verDoc(self):
+    def verDoc(self, **data):
         __verdados = ReadJson.DataJson(self.filename)
         return __verdados
 
+# Classe para leitura de arquivos csv
+
 
 class ReadCsv():
-    def __init__(self, filename, **data):
+    def __init__(self, filename):
         self.filename = filename
 
-    def DataCsv(self):
+    def DataCsv(self, **data):
         __caminho = '.dataset/csv/'
         __arquivo = __caminho + (self.filename + '.csv')
         if not os.path.exists(__caminho):
@@ -66,6 +69,9 @@ class ReadCsv():
                 __reader = csv.DicReader(csvfile)
                 for row in __reader:
                     print(row[data], row[data])
-       except Exception Error:
-           print("Erro de Leitura")
+        except TypeError:
+            print("Erro de Leitura")
 
+    def verCsv(self):
+        __verdados_csv = ReadCsv.DataCsv(self.filename)
+        return __verdados_csv
