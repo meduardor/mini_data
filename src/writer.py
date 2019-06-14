@@ -26,10 +26,21 @@ class WriterJson():
             open(arquivo, 'w')
 
     def DataJson(self, *data):
+        '''Grava os dados que serão processados obj -> [obj]'''
+        # TODO: Como gravar os dados nas listas
+
+        self.lista_key = []
         for i in self.lista_key:
             self.lista_key.append(data)
+
+        # TODO: Criar uma condição para lista_key,
+        # ser acessada só uma vez em cada documento
+
+        self.lista_value = []
         for x in self.lista_value:
-            self.lista_value(data)
+            self.lista_value.append(data)
+        # Loop for para armazenar os dados.
+        # Provisorio, pode haver mudanças.
 
     def ConvertJson(self):
         '''Converte Dict Python em dados Json'''
