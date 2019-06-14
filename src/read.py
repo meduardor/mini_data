@@ -40,11 +40,16 @@ class ReadJson():
         except TypeError:
             print("Seu arquivo não existe")
 
-    def verDoc(self, **data):
+    def seeDoc(self, **data):
+        # Acessa todos os dados do Dict
         __verdados = ReadJson.DataJson(self.filename)
         return __verdados
 
-# Classe para leitura de arquivos csv
+    def seeData(self, number=int, position=int):
+        pass
+
+        # TODO: Escrever os acessos por campos dentro do registros
+        # Classe para leitura de arquivos csv
 
 
 class ReadCsv():

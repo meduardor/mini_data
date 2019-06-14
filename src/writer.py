@@ -11,38 +11,37 @@ import csv
 class WriterJson():
     '''Escreve documentos Json'''
 
-    def __init__(self, lista_key, lista_value, filename):
-        self.lista_key = lista_key
-        self.lista_value = lista_value
-        self.filename = filename
+    def __init__(self, lista_key, lista_value):
+        self.lista_key = list
+        self.lista_value = list
 
-    def DocJson(self):
+    def DocJson(filename):
         '''Cria arquivo Json'''
         caminho = '.dataset/'
-        arquivo = caminho + (self.filename + ".json")
+        arquivo = caminho + (filename + ".json")
         if not os.path.exists(caminho):
             os.makedirs(caminho)
         if not os.path.exists(arquivo):
             open(arquivo, 'w')
 
-    def DataJson(self, *data):
+    def DataJson(self, arquivo, *data):
         '''Grava os dados que serão processados obj -> [obj]'''
-        # TODO: Como gravar os dados nas listas
 
-        self.lista_key = []
-        for i in self.lista_key:
+        # TODO: Como gravar os dados nas listas
+        # Loop for para armazenar os dados.
+        for i in data:
             self.lista_key.append(data)
 
-        # TODO: Criar uma condição para lista_key,
-        # ser acessada só uma vez em cada documento
+        # TODO(Marco):Escrever uma função aninhada para os dados dos valores
+        def dataJson_value(self, *data):
+            if os.path.exists(arquivo):
+                with open(arquivo, 'r') as f:
+                    f.readlines()
+            elif data in f.readlines():
+                for key, item in data:
+                    self.lista_value.append(item)
 
-        self.lista_value = []
-        for x in self.lista_value:
-            self.lista_value.append(data)
-        # Loop for para armazenar os dados.
-        # Provisorio, pode haver mudanças.
-
-    def ConvertJson(self):
+    def ConvertJson(self, filename, lista_key, lista_value):
         '''Converte Dict Python em dados Json'''
         __lista_salvar = [dict(zip(WriterJson.DataJson(self.lista_key),
                                    WriterJson.DataJson(self.lista_value)))]
@@ -59,22 +58,21 @@ class WriterJson():
             abrir = open(arquivo, 'w')
             abrir.writelines(conteudo)
             abrir.close()
-        except Exception as Error:
+        except FileNotFoundError:
             print("Não foi possivel escrever os Dados {}, {}"
-                  .format(__dictData, Error))
+                  .format(__dictData))
 
 
 class WriterCsv():
     '''Escrever documento csv'''
 
-    def __init__(self, fieldcampos, fieldnames, filename):
+    def __init__(self, fieldcampos, fieldnames):
         self.fieldcampos = fieldcampos
         self.fieldnames = fieldnames
-        self.filename = filename
 
-    def DocCsv(self):
-        __caminho = '.dataset/'
-        __arquivo = __caminho + (self.filename + ".csv")
+    def DocCsv(filename):
+        __caminho = '.dataset/csv/'
+        __arquivo = __caminho + (filename + ".csv")
         if not os.path.exists(__caminho):
             os.makedirs(__caminho)
         if not os.path.exists(__arquivo):
@@ -91,11 +89,14 @@ class WriterCsv():
 
     def WriterDataCsv(self, **data):
         arquivo = WriterCsv.DocCsv(self.filename)
-        with open(arquivo, 'w+', newlines='') as csvfile:
-            datawriter = csv.writer(csvfile, delimiter=' ',
-                                    quotechar='|',
-                                    quoting=csv.QUOTE_MINIMAL)
-            datawriter.writerow(data)
+        try:
+            with open(arquivo, 'w+', newlines='') as csvfile:
+                datawriter = csv.writer(csvfile, delimiter=' ',
+                                        quotechar='|',
+                                        quoting=csv.QUOTE_MINIMAL)
+                datawriter.writerow(data)
+        except FileNotFoundError:
+            print('O arquivo csv não existe')
 
     # TODO: pensar a forma de passar os **args
     # TODO: E de escrever eles no Documento
