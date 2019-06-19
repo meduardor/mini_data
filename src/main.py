@@ -12,8 +12,6 @@ from read import ReadJson
 
 def escrever_json(name):
     # TODO: Refatorar essa função de acordo com as novas funcionalidades do
-    # NOTE: Exemlo de dados de entrada.(Não permanentes)
-
     # Criação da base de dados in JSON
     escrita_json = WriterJson.DocJson(name)
 
@@ -23,6 +21,7 @@ def escrever_json(name):
     # Listas de dados
     data_json_value = []
     data_json_key = []
+
 
     # Chamada do Modulo writer e das funções de escritas Json
     # dados_json_key = WriterJson(data_json_key, data_json_value)
