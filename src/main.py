@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 import os
-import json
+# import json
 from writer import WriterCsv
 from writer import WriterJson
 from read import ReadJson
@@ -10,50 +10,50 @@ from read import ReadJson
 # TODO: Criar uma Chave primaria para identificar os dados.
 
 
-def escrever_json(name):
+def escrever_json(name, lista_key, lista_value):
     # TODO: Refatorar essa função de acordo com as novas funcionalidades do
     # Criação da base de dados in JSON
     escrita_json = WriterJson.DocJson(name)
-
+    # data = ReadJson.DataJson(name)
     # Número definido para entrada de e dados
     count = int(input('Quantos dados vai escrever: '))
 
     # Listas de dados
-    data_json_value = []
-    data_json_key = []
+    data_json_value = WriterJson(lista_key, lista_value)
+    data_json_key = WriterJson(lista_key, lista_value)
 
     # Chamada do Modulo writer e das funções de escritas Json
     # dados_json_key = WriterJson(data_json_key, data_json_value)
     # dados_json_value = WriterJson(data_json_key, data_json_value)
 
-    for i in range(count):
-        data_json_key.append(input('Digite nome dos Campos: '))
-    # TODO: Fazer testes sobre a entrada de dados das lista.
-    # Condicional de entrada de dados
-    data = json.loads(escrita_json)
+    # for i in range(count):
+    #     data_json_key.append(input('Digite nome dos Campos: '))
+    # # TODO: Fazer testes sobre a entrada de dados das lista.
+    # # Condicional de entrada de dados
 
-    if not data_json_key == 0:
-        if os.path.exists(escrita_json):
-            with open(data, 'r') as f:
+    if data_json_key == 0:
+        if not os.path.exists(name):
+            with open(name, 'r') as f:
                 f.readlines()
-        elif data_json_key in f.readlines():
-            pass
-        else:
-            dados_json_key = WriterJson.DataJson(escrita_json,
-                                                 data_json_key)
-    elif not data_json_value == 0:
+                data_json_key.DataJson(escrita_json,
+                                       data_json_key)
+    else:
+        pass
+    if data_json_value == 0:
         for x in range(count):
             data_json_value.append(input('Digite os valores: '))
-            dados_json_value = WriterJson.DataJson(data_json_value,
-                                                   escrita_json)
-            dados_json_value.dataJson_value(escrita_json)
-        else:
-            pass
+            data_json_value.DataJson(data_json_value,
+                                     escrita_json)
+            data_json_value.dataJson_value(escrita_json)
+    else:
+        pass
 
     # Converte os dos da lista em Dict e grava no arquivo JSON
+    escrita_dados_json = {}
     escrita_dados_json = WriterJson.ConvertJson(escrita_json,
-                                                dados_json_key,
-                                                dados_json_value)
+                                                escrita_dados_json,
+                                                data_json_key,
+                                                data_json_value)
     return escrita_dados_json
 
 
@@ -87,7 +87,9 @@ def users():
 
 
 if __name__ == '__main__':
-
+    
+    lista_key = []
+    lista_value = []
     nameEx = input('Qual extensão? json/csv.\n > ').upper()
     dataName = input('Nome do Banco\n > ').upper()
     count = int(input('Quantidade de dados.\n > '))
@@ -97,7 +99,7 @@ if __name__ == '__main__':
         if stopdata <= count:
             stopdata += 1
             if nameEx == 'JSON':
-                escrever_json(dataName)
+                escrever_json(dataName, lista_key, lista_value)
             elif nameEx == 'CSV':
                 pass
             else:

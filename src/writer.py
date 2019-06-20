@@ -30,7 +30,7 @@ class WriterJson():
         # TODO: Como gravar os dados nas listas
         # Loop for para armazenar os dados.
         for i in data:
-            self.lista_key.append(data)
+            self.lista_key.append(input('Digite nome dos Campos: '))
 
         # TODO(Marco):Escrever uma função aninhada para os dados dos valores
         def dataJson_value(self, *data):
