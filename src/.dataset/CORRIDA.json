@@ -1,0 +1,29 @@
+{
+    "Dados": [
+        {
+            "Carro": "Audi Q3",
+            "Categoria": "Rali"
+        }
+    ]
+}{
+    "Dados": [
+        {
+            "Carro": "Monza",
+            "Categoria": "Nascar"
+        }
+    ]
+}{
+    "Dados": [
+        {
+            "Carro": "Astra gsi",
+            "categoria": "RacerT"
+        }
+    ]
+}{
+    "Dados": [
+        {
+            "Carro": "Tucson",
+            "Categoria": "RaliDacar"
+        }
+    ]
+}

@@ -1,100 +1,102 @@
 #!/usr/bin/env python3
 
+# Modulo Writer
+
 
 import os
 import json
 import csv
 
 
-def documentCsv(filename):
-    caminho = '.dataset/'
-    arquivo = caminho + (filename + ".csv")
-    if not os.path.exists(caminho):
-        os.makedirs(caminho)
-    if not os.path.exists(arquivo):
-        open(arquivo)
+class WriterJson():
+    '''Escreve documentos Json'''
+
+    def __init__(self, lista_key, lista_value):
+        self.lista_key = list
+        self.lista_value = list
+
+    def DocJson(filename):
+        '''Cria arquivo Json'''
+        caminho = '.dataset/'
+        arquivo = caminho + (filename + ".json")
+        if not os.path.exists(caminho):
+            os.makedirs(caminho)
+        if not os.path.exists(arquivo):
+            open(arquivo, 'w')
+
+    def DataJson(self, arquivo, *data):
+        '''Grava os dados que serão processados obj -> [obj]'''
+
+        # TODO: Como gravar os dados nas listas
+        # Loop for para armazenar os dados.
+        for i in data:
+            self.lista_key.append(data)
+
+        # TODO(Marco):Escrever uma função aninhada para os dados dos valores
+        def dataJson_value(self, *data):
+            if os.path.exists(arquivo):
+                with open(arquivo, 'r') as f:
+                    f.readlines()
+            elif data in f.readlines():
+                for key, item in data:
+                    self.lista_value.append(item)
+
+    def ConvertJson(self, filename, lista_key, lista_value):
+        '''Converte Dict Python em dados Json'''
+        __lista_salvar = [dict(zip(WriterJson.DataJson(self.lista_key),
+                                   WriterJson.DataJson(self.lista_value)))]
+        __dictData = {"Dados": __lista_salvar}
+        __dictData = json.dumps(__dictData,
+                                indent=4,
+                                sort_keys=False)
+        try:
+            arquivo = WriterJson.DocJson(self.filename)
+            # TODO: Ver se o uso da função dentro da classe é dessa forma
+            abrir = open(arquivo, 'r+')
+            conteudo = arquivo.readlines()
+            conteudo.append(__dictData)
+            abrir = open(arquivo, 'w')
+            abrir.writelines(conteudo)
+            abrir.close()
+        except FileNotFoundError:
+            print("Não foi possivel escrever os Dados {}, {}"
+                  .format(__dictData))
 
 
-def writerDatajson(filename):
-    ''' Escreve arquivo json e add dados no arquivo'''
+class WriterCsv():
+    '''Escrever documento csv'''
 
-    lista_key = []
-    lista_value = []
-    count = int(input('Digite o numero de Dados: '))
-    # Dados que serão trasmitidos para o arquivo
-    # Incluindo dados na lista.
-    for i in range(count):
-        lista_key.append(input("Digite uma Chave: "))
+    def __init__(self, fieldcampos, fieldnames):
+        self.fieldcampos = fieldcampos
+        self.fieldnames = fieldnames
 
-    for x in range(count):
-        lista_value.append(input("Digite um Valor: "))
+    def DocCsv(filename):
+        __caminho = '.dataset/csv/'
+        __arquivo = __caminho + (filename + ".csv")
+        if not os.path.exists(__caminho):
+            os.makedirs(__caminho)
+        if not os.path.exists(__arquivo):
+            open(__arquivo, 'w')
 
-    # Criação do Arquivo que vai receber os dados
+    def DataCsv(self, **data):
+        self.fieldnames = []
+        self.fieldcampos = []
+        for i in self.fieldnames:
+            self.fieldnames.append(data)
 
-    caminho = '.dataset/'
-    arquivo = caminho + (filename + ".json")
-    if not os.path.exists(caminho):
-        os.makedirs(caminho)
-    if not os.path.exists(arquivo):
-        open(arquivo, 'w')
+        for x in self.fieldcampos:
+            self.fieldcampos.append(data)
 
-    # Conversão das listas em dict, para a escrita no documento ".json"
-# TODO: Refatorar essa parte do codigo
-    lista_salvar = [dict(zip(lista_key, lista_value))]
-    dictData = {"Dados": lista_salvar}
-    dictData = json.dumps(dictData, indent=4, sort_keys=False)
-    try:
-        abrir = open(arquivo, 'r+')
-        conteudo = abrir.readlines()
-        conteudo.append(dictData)
-        abrir = open(arquivo, 'w')
-        abrir.writelines(conteudo)
-        abrir.close()
-    except Exception as Error:
-        print("Não foi possivel iterar os dados {}, {}".format(dictData,
-                                                               Error))
+    def WriterDataCsv(self, **data):
+        arquivo = WriterCsv.DocCsv(self.filename)
+        try:
+            with open(arquivo, 'w+', newlines='') as csvfile:
+                datawriter = csv.writer(csvfile, delimiter=' ',
+                                        quotechar='|',
+                                        quoting=csv.QUOTE_MINIMAL)
+                datawriter.writerow(data)
+        except FileNotFoundError:
+            print('O arquivo csv não existe')
 
-
-def writerDataCsv(filename):
-    '''Escrever documentos csv e insere dados no documento'''
-
-    count = int(input('Digite numero de campos: '))
-    fieldnames = []
-    fieldcampos = []
-
-    for i in range(count):
-        fieldnames.append(input('Digite o Nome do campos: '))
-        Campos = dict(zip(fieldnames, ' '))
-
-    for x in range(count):
-        fieldcampos.append(input('Digite os Campos: '))
-
-    # TODO: Mudar a forma de atrelar os valores no dict
-    # para enviar para o documento
-
-    # Criação dos arquivos csv
-    caminho = '.dataset/csv/'
-    arquivo = caminho + (filename + ".csv")
-    if not os.path.exists(caminho):
-        os.makedirs(caminho)
-    if not os.path.exists(arquivo):
-        open(arquivo, 'w')
-        # TODO: Escrever a primeira fileira de descrição das informações
-        # TODO: Depois append dos dados nas informações
-
-    with open(arquivo, 'w+', newline='') as csv_file:
-        if fieldnames in csv_file:
-            pass
-        else:
-            writer = csv.DictWriter(csv_file, fieldnames=fieldnames,
-                                    delimiter='\t')
-            writer.writeheader()
-            writer.writerow(Campos)
-        csv_file.close()
-    complete = True
-    while True:
-        with open(arquivo, 'a+') as csv_file:
-            writer = csv.writer(csv_file)
-            for x in range(count):
-                writer.writerow(fieldcampos)
-# TODO: Escrever dois loops para iterar os dados no documento
+    # TODO: pensar a forma de passar os **args
+    # TODO: E de escrever eles no Documento
