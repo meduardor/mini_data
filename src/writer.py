@@ -27,30 +27,39 @@ class WriterJson():
     def DataJson(self, arquivo, *data):
         '''Grava os dados que serão processados obj -> [obj]'''
 
-        # TODO: Como gravar os dados nas listas
         # Loop for para armazenar os dados.
-        for i in data:
-            self.lista_key.append(input('Digite nome dos Campos: '))
+        # Armazenamento de dados na lista_key.
+        if os.path.exists(arquivo) and self.lista_key == []:
+            with open(arquivo, 'r+') as f:
+                f.readlines()
+                for i in data:
+                    self.lista_key.append(input('Digite nome dos Campos: '))
+        elif not os.path.exists(arquivo) and data in f.readlines():
+            print('Crie o Arquivo para Gravação de dados!!')
+            pass
+        # Armazenamento dos  dados de valores na lista_value.
+        # TODO(merds): Tirar as instancias de class das funções.
 
-        # TODO(Marco):Escrever uma função aninhada para os dados dos valores
         def dataJson_value(self, *data):
             if os.path.exists(arquivo):
-                with open(arquivo, 'r') as f:
+                with open(arquivo, 'r+') as f:
                     f.readlines()
             elif data in f.readlines():
-                for key, item in data:
-                    self.lista_value.append(item)
+                for item in data:
+                    self.lista_value.append(input('Digite os Valores: '))
 
-    def ConvertJson(self, filename, lista_key, lista_value):
+    def ConvertJson(self, l_key, l_value, filename):
         '''Converte Dict Python em dados Json'''
-        __lista_salvar = [dict(zip(WriterJson.DataJson(self.lista_key),
-                                   WriterJson.DataJson(self.lista_value)))]
+        l_value = WriterJson.DataJson.dataJson_value(self.lista_value)
+        l_key = WriterJson.DataJson(self.lista_key)
+
+        __lista_salvar = [dict(zip(l_key, l_value))]
         __dictData = {"Dados": __lista_salvar}
         __dictData = json.dumps(__dictData,
                                 indent=4,
                                 sort_keys=False)
         try:
-            arquivo = WriterJson.DocJson(self.filename)
+            arquivo = WriterJson.DocJson(filename)
             # TODO: Ver se o uso da função dentro da classe é dessa forma
             abrir = open(arquivo, 'r+')
             conteudo = arquivo.readlines()
