@@ -11,6 +11,10 @@ import csv
 # TODO: Criar argumentos para interagir com os dados na visualização
 
 
+class Read:
+    filename: str
+
+
 class ReadJson():
     def __init__(self, filename):
         self.filename = filename
