@@ -40,7 +40,7 @@ class WriterJson():
         # Armazenamento dos  dados de valores na lista_value.
         # TODO(merds): Tirar as instancias de class das funções.
 
-        def dataJson_value(self, *data):
+        def dataJson_value():
             if os.path.exists(arquivo):
                 with open(arquivo, 'r+') as f:
                     f.readlines()
@@ -48,9 +48,10 @@ class WriterJson():
                 for item in data:
                     self.lista_value.append(input('Digite os Valores: '))
 
-    def ConvertJson(self, l_key, l_value, filename):
+    def ConvertJson(self, l_value, l_key, filename, *data):
         '''Converte Dict Python em dados Json'''
-        l_value = WriterJson.DataJson.dataJson_value(self.lista_value)
+        l_value = WriterJson.DataJson(self.lista_value, filename)
+        l_value.dataJson_value()
         l_key = WriterJson.DataJson(self.lista_key)
 
         __lista_salvar = [dict(zip(l_key, l_value))]
